@@ -51,4 +51,15 @@ public class TipoBancoDeDadosController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<TipoBancoDeDadosModel> update(@PathVariable(value = "id") UUID id, @RequestBody @Valid TipoBancoDeDadosModel tipoBanco){
+        Optional<TipoBancoDeDadosModel> tipoBanco0 = tipoBancoDeDadosRepository.findById(id);
+        if (!tipoBanco0.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        tipoBanco.setId(tipoBanco0.get().getId());
+        return new ResponseEntity<TipoBancoDeDadosModel>(tipoBancoDeDadosRepository.save(tipoBanco), HttpStatus.OK);
+
+    }
+
 }
