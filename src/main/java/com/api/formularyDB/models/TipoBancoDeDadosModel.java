@@ -35,4 +35,10 @@ public class TipoBancoDeDadosModel implements Serializable {
         this.tipo = tipo;
     }
 
+   public static TipoBancoDeDadosModel converter(TipoBancoDeDadosModel t){
+        var tipoBancoDeDados = new TipoBancoDeDadosModel();
+        tipoBancoDeDados.setId(t.getId());
+        tipoBancoDeDados.setTipo(t.getTipo());
+        return tipoBancoDeDados;
+   }
 }
