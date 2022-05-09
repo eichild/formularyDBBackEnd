@@ -10,6 +10,7 @@ import java.util.UUID;
 public class TipoBancoDeDadosModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
@@ -17,4 +18,21 @@ public class TipoBancoDeDadosModel implements Serializable {
     @Column(nullable = false, unique = true, length = 255)
     @NotBlank(message = "O campo Tipo não pode estar em branco")
     private String tipo;
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
 }
