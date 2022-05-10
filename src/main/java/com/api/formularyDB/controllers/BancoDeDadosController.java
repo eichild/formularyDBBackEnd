@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -27,13 +29,19 @@ public class BancoDeDadosController {
                 .map(BancoDeDadosModel::converter)
                 .collect(Collectors.toList());
     }
-
-        @PostMapping
+    @PostMapping
     public ResponseEntity<BancoDeDadosModel> save(@RequestBody @Valid BancoDeDadosModel banco){
         return new ResponseEntity<BancoDeDadosModel>(bancoDeDadosRepository.save(banco), HttpStatus.CREATED);
     }
 
-
-
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> delete(@PathVariable(value = "id") UUID id){
+        Optional<BancoDeDadosModel> banco = bancoDeDadosRepository.findById(id);
+        if (!banco.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        bancoDeDadosRepository.delete(banco.get());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }
