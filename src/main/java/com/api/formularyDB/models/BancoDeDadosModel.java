@@ -26,9 +26,17 @@ public class BancoDeDadosModel implements Serializable {
     @Column(nullable = false, length = 255)
     private String senha;
 
+    public TipoBancoDeDadosModel getTipoBanco() {
+        return tipoBanco;
+    }
+
     @OneToOne
-    @JoinColumn(nullable = false, unique = true)
+    @JoinColumn(name = "id")
     private TipoBancoDeDadosModel tipoBanco;
+
+    public TipoBancoDeDadosModel getTipoBancoDeDadosModel() {
+        return tipoBanco;
+    }
 
     public UUID getId() {
         return id;
@@ -41,7 +49,6 @@ public class BancoDeDadosModel implements Serializable {
     public String getServidor() {
         return servidor;
     }
-
     public void setServidor(String servidor) {
         this.servidor = servidor;
     }
@@ -56,5 +63,14 @@ public class BancoDeDadosModel implements Serializable {
     }
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public static BancoDeDadosModel converter(BancoDeDadosModel b) {
+        var bancoDeDados = new BancoDeDadosModel();
+        bancoDeDados.setId(b.getId());
+        bancoDeDados.setServidor(b.getServidor());
+        bancoDeDados.setUsuario(b.getUsuario());
+        bancoDeDados.setSenha(b.getSenha());
+        return b;
     }
 }
