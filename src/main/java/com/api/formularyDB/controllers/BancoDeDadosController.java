@@ -34,6 +34,16 @@ public class BancoDeDadosController {
         return new ResponseEntity<BancoDeDadosModel>(bancoDeDadosRepository.save(banco), HttpStatus.CREATED);
     }
 
+    @PutMapping("{id}")
+    public ResponseEntity<BancoDeDadosModel> update (@PathVariable(value = "id") UUID id, @RequestBody @Valid BancoDeDadosModel banco){
+        Optional<BancoDeDadosModel> banco0 = bancoDeDadosRepository.findById(id);
+        if (!banco0.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        banco.setId(banco0.get().getId());
+        return new ResponseEntity<BancoDeDadosModel>(bancoDeDadosRepository.save(banco), HttpStatus.OK);
+    }
+
     @DeleteMapping("{id}")
     public ResponseEntity<?> delete(@PathVariable(value = "id") UUID id){
         Optional<BancoDeDadosModel> banco = bancoDeDadosRepository.findById(id);
