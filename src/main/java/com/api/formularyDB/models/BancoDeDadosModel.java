@@ -31,12 +31,12 @@ public class BancoDeDadosModel implements Serializable {
     }
 
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "id_tipo")
     private TipoBancoDeDadosModel tipoBanco;
 
-    public TipoBancoDeDadosModel getTipoBancoDeDadosModel() {
-        return tipoBanco;
-    }
+//    public TipoBancoDeDadosModel getTipoBancoDeDadosModel() {
+//        return tipoBanco;
+//    }
 
     public UUID getId() {
         return id;

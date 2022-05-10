@@ -10,23 +10,21 @@ import java.util.UUID;
 public class TipoBancoDeDadosModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    private UUID id_tipo;
 
     @Column(nullable = false, unique = true, length = 255)
     @NotBlank(message = "O campo Tipo não pode estar em branco")
     private String tipo;
 
-    public UUID getId() {
-        return id;
-    }
 
-    public void setId(UUID id) {
-        this.id = id;
+    public UUID getId_tipo() {
+        return id_tipo;
     }
-
+    public void setId_tipo(UUID id_tipo) {
+        this.id_tipo = id_tipo;
+    }
     public String getTipo() {
         return tipo;
     }
@@ -37,7 +35,7 @@ public class TipoBancoDeDadosModel implements Serializable {
 
    public static TipoBancoDeDadosModel converter(TipoBancoDeDadosModel t){
         var tipoBancoDeDados = new TipoBancoDeDadosModel();
-        tipoBancoDeDados.setId(t.getId());
+        tipoBancoDeDados.setId_tipo(t.getId_tipo());
         tipoBancoDeDados.setTipo(t.getTipo());
         return tipoBancoDeDados;
    }

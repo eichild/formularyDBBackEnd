@@ -57,7 +57,7 @@ public class TipoBancoDeDadosController {
         if (!tipoBanco0.isPresent()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        tipoBanco.setId(tipoBanco0.get().getId());
+        tipoBanco.setId_tipo(tipoBanco0.get().getId_tipo());
         return new ResponseEntity<TipoBancoDeDadosModel>(tipoBancoDeDadosRepository.save(tipoBanco), HttpStatus.OK);
 
     }
