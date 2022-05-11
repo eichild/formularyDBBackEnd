@@ -1,7 +1,6 @@
 package com.api.formularyDB.controllers;
 
 import com.api.formularyDB.models.BancoDeDadosModel;
-import com.api.formularyDB.models.TipoBancoDeDadosModel;
 import com.api.formularyDB.repositories.BancoDeDadosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -35,7 +33,7 @@ public class BancoDeDadosController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<BancoDeDadosModel> update (@PathVariable(value = "id") UUID id, @RequestBody @Valid BancoDeDadosModel banco){
+    public ResponseEntity<BancoDeDadosModel> update (@PathVariable(value = "id") int id, @RequestBody @Valid BancoDeDadosModel banco){
         Optional<BancoDeDadosModel> banco0 = bancoDeDadosRepository.findById(id);
         if (!banco0.isPresent()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -45,7 +43,7 @@ public class BancoDeDadosController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<?> delete(@PathVariable(value = "id") UUID id){
+    public ResponseEntity<?> delete(@PathVariable(value = "id") int id){
         Optional<BancoDeDadosModel> banco = bancoDeDadosRepository.findById(id);
         if (!banco.isPresent()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

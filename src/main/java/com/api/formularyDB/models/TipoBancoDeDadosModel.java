@@ -6,23 +6,21 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Entity
-@Table(name = "TB_TIPO_BANCO_DE_DADOS")
+@Table(name = "tb_tipo_banco_de_dados")
 public class TipoBancoDeDadosModel implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id_tipo;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id_tipo;
 
-    @Column(nullable = false, unique = true, length = 255)
     @NotBlank(message = "O campo Tipo não pode estar em branco")
     private String tipo;
 
-
-    public UUID getId_tipo() {
+    public int getId_tipo() {
         return id_tipo;
     }
-    public void setId_tipo(UUID id_tipo) {
+    public void setId_tipo(int id_tipo) {
         this.id_tipo = id_tipo;
     }
     public String getTipo() {
