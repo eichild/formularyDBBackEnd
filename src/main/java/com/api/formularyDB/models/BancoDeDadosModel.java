@@ -12,7 +12,7 @@ public class BancoDeDadosModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int id_banco;
 
     @NotBlank(message = "O campo Servidor não pode estar em branco")
     private String servidor;
@@ -23,16 +23,32 @@ public class BancoDeDadosModel implements Serializable {
     @NotBlank(message = "O campo Senha não pode estar em branco")
     private String senha;
 
+    public int getId_banco() {
+        return id_banco;
+    }
+
+    public void setId_banco(int id_banco) {
+        this.id_banco = id_banco;
+    }
+
+    public TipoBancoDeDadosModel getTipoBanco() {
+        return tipoBanco;
+    }
+
+    public void setTipoBanco(TipoBancoDeDadosModel tipoBanco) {
+        this.tipoBanco = tipoBanco;
+    }
+
     @OneToOne
     @JoinColumn(name = "id_tipo")
     private TipoBancoDeDadosModel tipoBanco;
 
     public int getId() {
-        return id;
+        return id_banco;
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.id_banco = id;
     }
 
     public String getServidor() {
