@@ -27,6 +27,12 @@ public class BancoDeDadosController {
                 .map(BancoDeDadosModel::converter)
                 .collect(Collectors.toList());
     }
+    @GetMapping(value = "/{id}")
+    public ResponseEntity consultar(@PathVariable("id") int id_banco){
+        return bancoDeDadosRepository.findById(id_banco)
+                .map(record -> ResponseEntity.ok().body(record))
+                .orElse(ResponseEntity.notFound().build());
+    }
     @PostMapping
     public ResponseEntity<BancoDeDadosModel> save(@RequestBody @Valid BancoDeDadosModel banco){
         return new ResponseEntity<BancoDeDadosModel>(bancoDeDadosRepository.save(banco), HttpStatus.CREATED);

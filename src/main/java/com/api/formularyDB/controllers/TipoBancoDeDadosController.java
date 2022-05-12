@@ -1,6 +1,6 @@
 package com.api.formularyDB.controllers;
 
-import com.api.formularyDB.models.BancoDeDadosModel;
+import com.api.formularyDB.exception.ObjectNotFoundException;
 import com.api.formularyDB.models.TipoBancoDeDadosModel;
 import com.api.formularyDB.repositories.TipoBancoDeDadosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/tipo-banco-de-dados")
@@ -29,20 +27,25 @@ public class TipoBancoDeDadosController {
 //                .map(BancoDeDadosModel::converter)
 //                .collect(Collectors.toList());
     }
+//    @GetMapping(value = "/{id}")
+//    public ResponseEntity consultar(@PathVariable("id") int id_tipo){
+//        return tipoBancoDeDadosRepository.findById(id_tipo)
+//                .map(record -> ResponseEntity.ok().body(record))
+//                .orElse(ResponseEntity.notFound().build());
+//    }
     @GetMapping(value = "/{id}")
-    public ResponseEntity consultar(@PathVariable("id") int id_tipo){
-        return tipoBancoDeDadosRepository.findById(id_tipo)
-                .map(record -> ResponseEntity.ok().body(record))
-                .orElse(ResponseEntity.notFound().build());
+    public TipoBancoDeDadosModel consultar(@PathVariable("id") int id_tipo){
+        Optional<TipoBancoDeDadosModel> tipoBanco = this.tipoBancoDeDadosRepository.findById(id_tipo);
+        return tipoBanco.orElseThrow(() -> new ObjectNotFoundException("Tipo de banco não encontrado! ID:" +id_tipo));
+    }
+    @PostMapping
+    public ResponseEntity<TipoBancoDeDadosModel> save(@RequestBody @Valid TipoBancoDeDadosModel tipoBanco){
+        return new ResponseEntity<TipoBancoDeDadosModel>(tipoBancoDeDadosRepository.save(tipoBanco), HttpStatus.CREATED);
     }
 //    @PostMapping
-//    public ResponseEntity<TipoBancoDeDadosModel> save(@RequestBody @Valid TipoBancoDeDadosModel tipoBanco){
-//        return new ResponseEntity<TipoBancoDeDadosModel>(tipoBancoDeDadosRepository.save(tipoBanco), HttpStatus.CREATED);
+//    public TipoBancoDeDadosModel save (@RequestBody TipoBancoDeDadosModel tipo){
+//        return tipoBancoDeDadosRepository.save(tipo);
 //    }
-    @PostMapping
-    public TipoBancoDeDadosModel save (@RequestBody TipoBancoDeDadosModel tipo){
-        return tipoBancoDeDadosRepository.save(tipo);
-    }
 
     @DeleteMapping("{id}")
     public ResponseEntity<?> delete(@PathVariable(value = "id")  int id){
