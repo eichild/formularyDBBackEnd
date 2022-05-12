@@ -13,11 +13,13 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/tipo-banco-de-dados")
 public class TipoBancoDeDadosController {
 
     @Autowired
     TipoBancoDeDadosRepository tipoBancoDeDadosRepository;
+
 
     @GetMapping
     public List<TipoBancoDeDadosModel> findAll() {
