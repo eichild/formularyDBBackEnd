@@ -1,11 +1,18 @@
 package com.api.formularyDB.models;
 
+import com.api.formularyDB.dtos.request.BancoDeDadosRequestDto;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
-import java.util.UUID;
 
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "tb_banco_de_dados")
 public class BancoDeDadosModel implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -22,60 +29,18 @@ public class BancoDeDadosModel implements Serializable {
 
     @NotBlank(message = "O campo Senha não pode estar em branco")
     private String senha;
-
-    public int getId_banco() {
-        return id_banco;
-    }
-
-    public void setId_banco(int id_banco) {
-        this.id_banco = id_banco;
-    }
-
-    public TipoBancoDeDadosModel getTipoBanco() {
-        return tipoBanco;
-    }
-
-    public void setTipoBanco(TipoBancoDeDadosModel tipoBanco) {
-        this.tipoBanco = tipoBanco;
-    }
-
     @OneToOne
     @JoinColumn(name = "id_tipo")
     private TipoBancoDeDadosModel tipoBanco;
 
-    public int getId() {
-        return id_banco;
-    }
 
-    public void setId(int id) {
-        this.id_banco = id;
-    }
-
-    public String getServidor() {
-        return servidor;
-    }
-    public void setServidor(String servidor) {
-        this.servidor = servidor;
-    }
-    public String getUsuario() {
-        return usuario;
-    }
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-    public String getSenha() {
-        return senha;
-    }
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public static BancoDeDadosModel converter(BancoDeDadosModel b) {
+    public BancoDeDadosModel converter(BancoDeDadosRequestDto b) {
         var bancoDeDados = new BancoDeDadosModel();
-        bancoDeDados.setId(b.getId());
+        bancoDeDados.setId_banco(b.getId_banco());
         bancoDeDados.setServidor(b.getServidor());
         bancoDeDados.setUsuario(b.getUsuario());
         bancoDeDados.setSenha(b.getSenha());
-        return b;
+        bancoDeDados.setTipoBanco(getTipoBanco());
+        return bancoDeDados;
     }
 }
