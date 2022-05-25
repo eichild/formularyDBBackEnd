@@ -36,4 +36,15 @@ public class BancoDeDadosService {
         return bancoDeDadosRepository.save(mapper.map(objDTO, BancoDeDadosModel.class));
     }
 
+    public BancoDeDadosModel update(int id_banco, BancoDeDadosModel bancoRequest) {
+        BancoDeDadosModel banco = bancoDeDadosRepository.findById(id_banco)
+                .orElseThrow(() -> new ObjectNotFoundException("Informações de Banco não encontrada! ID:" + id_banco));
+        banco.setServidor(bancoRequest.getServidor());
+        banco.setUsuario(bancoRequest.getUsuario());
+        banco.setUsuario(bancoRequest.getUsuario());
+        banco.setTipo_banco(bancoRequest.getTipo_banco());
+        return bancoDeDadosRepository.save(banco);
     }
+
+
+}

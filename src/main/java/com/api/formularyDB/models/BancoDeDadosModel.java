@@ -29,9 +29,9 @@ public class BancoDeDadosModel implements Serializable {
 
     @NotBlank(message = "O campo Senha não pode estar em branco")
     private String senha;
-    @OneToOne
-    @JoinColumn(name = "id_tipo")
-    private TipoBancoDeDadosModel tipoBanco;
+
+    @NotBlank(message = "O campo de tipod de banco não pode estar em branco")
+    private String tipo_banco;
 
 
     public BancoDeDadosModel converter(BancoDeDadosRequestDto b) {
@@ -40,7 +40,7 @@ public class BancoDeDadosModel implements Serializable {
         bancoDeDados.setServidor(b.getServidor());
         bancoDeDados.setUsuario(b.getUsuario());
         bancoDeDados.setSenha(b.getSenha());
-        bancoDeDados.setTipoBanco(getTipoBanco());
+        bancoDeDados.setTipo_banco(getTipo_banco());
         return bancoDeDados;
     }
 }

@@ -16,10 +16,7 @@ public class BancoDeDadosRequestDto {
     private String servidor;
     private String usuario;
     private String senha;
-
-    @NotBlank
-    private TipoBancoDeDadosModel tipoBanco;
-
+    private String tipo_banco;
 
 }
 

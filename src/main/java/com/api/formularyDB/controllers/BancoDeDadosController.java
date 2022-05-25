@@ -52,24 +52,22 @@ public class BancoDeDadosController {
         BancoDeDadosRequestDto bancoResponse = modelMapper.map(banco, BancoDeDadosRequestDto.class);
         return new ResponseEntity<BancoDeDadosRequestDto>(bancoResponse, HttpStatus.CREATED);
     }
-//    @PutMapping("{id}")
-//    public ResponseEntity<BancoDeDadosModel> update (@PathVariable(value = "id") int id, @RequestBody @Valid BancoDeDadosModel banco){
-//        Optional<BancoDeDadosModel> banco0 = bancoDeDadosRepository.findById(id);
-//        if (!banco0.isPresent()){
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//        banco.setId(banco0.get().getId());
-//        return new ResponseEntity<BancoDeDadosModel>(bancoDeDadosRepository.save(banco), HttpStatus.OK);
-//    }
-//
-@DeleteMapping("{id}")
-public ResponseEntity<?> delete(@PathVariable(value = "id") int id){
-    Optional<BancoDeDadosModel> banco = bancoDeDadosRepository.findById(id);
-    if (!banco.isPresent()){
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @PutMapping("{id}")
+    public ResponseEntity<BancoDeDadosRequestDto> update (@PathVariable(value = "id") int id_banco, @RequestBody BancoDeDadosRequestDto objDTO){
+        BancoDeDadosModel bancoRequest = modelMapper.map(objDTO, BancoDeDadosModel.class);
+        BancoDeDadosModel banco = bancoDeDadosService.save(objDTO);
+        BancoDeDadosRequestDto bancoResponse = modelMapper.map(banco, BancoDeDadosRequestDto.class);
+        return ResponseEntity.ok().body(bancoResponse);
     }
-    bancoDeDadosRepository.delete(banco.get());
-    return new ResponseEntity<>(HttpStatus.OK);
+//
+    @DeleteMapping("{id}")
+    public ResponseEntity<?> delete(@PathVariable(value = "id") int id){
+     Optional<BancoDeDadosModel> banco = bancoDeDadosRepository.findById(id);
+        if (!banco.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        bancoDeDadosRepository.delete(banco.get());
+        return new ResponseEntity<>(HttpStatus.OK);
 }
 
 

@@ -15,7 +15,7 @@ public class BancoDeDadosResponseDto {
     private String servidor;
     private String usuario;
     private String senha;
-    private TipoBancoDeDadosModel tipoBanco;
+    private String tipo_banco;
 
 
     public BancoDeDadosResponseDto(BancoDeDadosModel obj){
@@ -24,7 +24,8 @@ public class BancoDeDadosResponseDto {
         this.servidor = obj.getServidor();
         this.usuario = obj.getUsuario();
         this.senha = obj.getSenha();
-        this.tipoBanco = obj.getTipoBanco();
+        this.tipo_banco = obj.getTipo_banco();
+
     }
 
 
