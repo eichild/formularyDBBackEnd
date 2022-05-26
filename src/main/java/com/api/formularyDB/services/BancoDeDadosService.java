@@ -1,10 +1,8 @@
 package com.api.formularyDB.services;
 
 import com.api.formularyDB.dtos.request.BancoDeDadosRequestDto;
-import com.api.formularyDB.dtos.response.BancoDeDadosResponseDto;
 import com.api.formularyDB.exception.ObjectNotFoundException;
 import com.api.formularyDB.models.BancoDeDadosModel;
-import com.api.formularyDB.models.TipoBancoDeDadosModel;
 import com.api.formularyDB.repositories.BancoDeDadosRepository;
 
 import org.modelmapper.ModelMapper;
@@ -19,10 +17,8 @@ public class BancoDeDadosService {
 
     @Autowired
     BancoDeDadosRepository bancoDeDadosRepository;
-
     @Autowired
     private ModelMapper mapper;
-
 
     public List<BancoDeDadosModel> findAll(){
         List<BancoDeDadosModel>bancoDeDadosModel= bancoDeDadosRepository.findAll();

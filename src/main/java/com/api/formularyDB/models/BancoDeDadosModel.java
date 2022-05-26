@@ -30,7 +30,7 @@ public class BancoDeDadosModel implements Serializable {
     @NotBlank(message = "O campo Senha não pode estar em branco")
     private String senha;
 
-    @NotBlank(message = "O campo de tipod de banco não pode estar em branco")
+    @NotBlank(message = "O campo de tipo de banco não pode estar em branco")
     private String tipo_banco;
 
 

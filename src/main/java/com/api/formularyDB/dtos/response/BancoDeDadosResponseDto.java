@@ -1,7 +1,6 @@
 package com.api.formularyDB.dtos.response;
 
 import com.api.formularyDB.models.BancoDeDadosModel;
-import com.api.formularyDB.models.TipoBancoDeDadosModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
