@@ -34,13 +34,13 @@ public class BancoDeDadosModel implements Serializable {
     private String tipo_banco;
 
 
-    public BancoDeDadosModel converter(BancoDeDadosRequestDto b) {
-        var bancoDeDados = new BancoDeDadosModel();
-        bancoDeDados.setId_banco(b.getId_banco());
-        bancoDeDados.setServidor(b.getServidor());
-        bancoDeDados.setUsuario(b.getUsuario());
-        bancoDeDados.setSenha(b.getSenha());
-        bancoDeDados.setTipo_banco(getTipo_banco());
-        return bancoDeDados;
-    }
+//    public BancoDeDadosModel converter(BancoDeDadosRequestDto b) {
+//        var bancoDeDados = new BancoDeDadosModel();
+//        bancoDeDados.setId_banco(b.getId_banco());
+//        bancoDeDados.setServidor(b.getServidor());
+//        bancoDeDados.setUsuario(b.getUsuario());
+//        bancoDeDados.setSenha(b.getSenha());
+//        bancoDeDados.setTipo_banco(getTipo_banco());
+//        return bancoDeDados;
+//    }
 }
